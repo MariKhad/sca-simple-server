@@ -1,0 +1,28 @@
+{
+  "name": "sca-simple-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:autoimport && tsc",
+    "start": "node index.js",
+    "dev": "nodemon"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MariKhad/sca-simple-server.git"
+  },
+  "author": "lynx-89@inbox.ru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MariKhad/sca-simple-server/issues"
+  },
+  "homepage": "https://github.com/MariKhad/sca-simple-server#readme",
+  "description": "",
+  "dependencies": {
+    "@scallop-io/sui-scallop-sdk": "^2.0.12",
+    "axios": "^1.9.0",
+    "express": "^5.1.0"
+  }
+}
