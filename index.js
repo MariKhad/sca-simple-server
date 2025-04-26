@@ -1,17 +1,9 @@
-import {
-  Scallop,
-  ScallopAddress,
-  ScallopClient,
-} from "@scallop-io/sui-scallop-sdk";
+import { Scallop, ScallopAddress } from "@scallop-io/sui-scallop-sdk";
 import express from "express";
-import swaggerUi from "swagger-ui-express";
-import swaggerAutogen from "swagger-autogen";
-import fs from "fs";
 const app = express();
 const port = 3000;
 
-const outputFile = "swagger_output.json";
-const endpointsFiles = ["index.js"];
+let client, scallopQuery;
 
 const scallopSDK = new Scallop({
   addressId: "67c44a103fe1b8c454eb9699",
@@ -23,9 +15,22 @@ const scallopAddress = new ScallopAddress({
   network: "mainnet",
 });
 
-const client = await scallopSDK.createScallopClient();
-
-const scallopQuery = await scallopSDK.createScallopQuery();
+scallopSDK
+  .createScallopClient()
+  .then((c) => {
+    client = c;
+    return scallopSDK.createScallopQuery();
+  })
+  .then((sq) => {
+    scallopQuery = sq;
+    console.log("Client and ScallopQuery initialized");
+    app.listen(port, () => {
+      console.log(`Server listening at http://localhost:${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Error initializing Scallop SDK:", error);
+  });
 
 app.use(express.json());
 
