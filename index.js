@@ -1,5 +1,7 @@
 import { Scallop, ScallopAddress } from "@scallop-io/sui-scallop-sdk";
 import express from "express";
+import * as dotenv from "dotenv";
+dotenv.config();
 const app = express();
 const port = 3000;
 
@@ -35,7 +37,8 @@ scallopSDK
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("This is a SCALLOP SIMPLE SERVER");
+  console.log('process.env["START_PHRASE"]: ', process.env["START_PHRASE"]);
+  res.send(process.env["START_PHRASE"]);
 });
 
 app.get("/apy", async (req, res) => {
