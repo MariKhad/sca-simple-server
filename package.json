@@ -1,5 +1,5 @@
 {
-  "name": "sca-simple-server",
+  "name": "sui-simple-server",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
